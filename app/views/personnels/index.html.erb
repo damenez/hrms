@@ -17,7 +17,8 @@
     <% @personnels.each do |personnel| %>
       <tr>
         <td><%= personnel.name %></td>
-        <td><%= personnel.pos_code %></td>
+        <td><%= @positions.find_by(code: personnel.pos_code) %></td>
+       <!--  <td><%= personnel.pos_code %></td> -->
         <td><%= personnel.age %></td>
         <td><%= personnel.about %></td>
         <td><%= link_to 'Show', personnel %></td>

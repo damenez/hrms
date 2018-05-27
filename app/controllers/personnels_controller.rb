@@ -5,7 +5,7 @@ class PersonnelsController < ApplicationController
   # GET /personnels.json
   def index
     @personnels = Personnel.all
-    # @positions = Position.all
+    @positions = Position.all
   end
 
   # GET /personnels/1
