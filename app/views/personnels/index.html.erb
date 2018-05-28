@@ -17,9 +17,7 @@
     <% @personnels.each do |personnel| %>
       <tr>
         <td><%= personnel.name %></td>
-        <!-- <td><%= @positions.find_by(code: personnel.pos_code) %></td> -->
-        <td><%= @positions.where(code: personnel.pos_code).pluck(:description) %></td>
-       <!--  <td><%= personnel.pos_code %></td> -->
+        <td><%= personnel.position_description %></td>
         <td><%= personnel.age %></td>
         <td><%= personnel.about %></td>
         <td><%= link_to 'Show', personnel %></td>
