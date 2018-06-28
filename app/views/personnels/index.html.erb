@@ -1,6 +1,7 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Personnels</h1>
+<%= paginate @personnels %>
 
 <table>
   <thead>
@@ -27,7 +28,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @personnels %>
 <br>
 
 <%= link_to 'New Personnel', new_personnel_path %>
