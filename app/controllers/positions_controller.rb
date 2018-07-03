@@ -19,6 +19,7 @@ class PositionsController < ApplicationController
 
   # GET /positions/1/edit
   def edit
+    # raise "edit positions"
   end
 
   # POST /positions

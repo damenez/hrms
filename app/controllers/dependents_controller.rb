@@ -1,74 +1,17 @@
 class DependentsController < ApplicationController
-  before_action :set_dependent, only: [:show, :edit, :update, :destroy]
 
-  # GET /dependents
-  # GET /dependents.json
-  def index
-    @dependents = Dependent.all
-  end
-
-  # GET /dependents/1
-  # GET /dependents/1.json
-  def show
-  end
-
-  # GET /dependents/new
-  def new
-    @dependent = Dependent.new
-  end
-
-  # GET /dependents/1/edit
-  def edit
-  end
-
-  # POST /dependents
-  # POST /dependents.json
+   # No `new` action because form is provided by PostsController#show
   def create
-    @dependent = Dependent.new(dependent_params)
-
-    respond_to do |format|
-      if @dependent.save
-        format.html { redirect_to @dependent, notice: 'Dependent was successfully created.' }
-        format.json { render :show, status: :created, location: @dependent }
-      else
-        format.html { render :new }
-        format.json { render json: @dependent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /dependents/1
-  # PATCH/PUT /dependents/1.json
-  def update
-    respond_to do |format|
-      if @dependent.update(dependent_params)
-        format.html { redirect_to @dependent, notice: 'Dependent was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dependent }
-      else
-        format.html { render :edit }
-        format.json { render json: @dependent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /dependents/1
-  # DELETE /dependents/1.json
-  def destroy
-    @dependent.destroy
-    respond_to do |format|
-      format.html { redirect_to dependents_url, notice: 'Dependent was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @personnel = Personnel.find(params[:personnel_id])
+    # Create associated model, just like we did in the console before
+    @dependent = @personnel.dependents.create(dependent_params)
+    # We want to show the dependent in the context of the Post
+    redirect_to @personnel
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dependent
-      @dependent = Dependent.find(params[:id])
-    end
+  def dependent_params
+    params.require(:dependent).permit(:name, :relationship)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dependent_params
-      params.require(:dependent).permit(:name, :relationship, :age)
-    end
 end

@@ -4,8 +4,8 @@ class PersonnelsController < ApplicationController
   # GET /personnels
   # GET /personnels.json
   def index
-    @personnels = Personnel.all
-    # @positions = Position.all
+    # @personnels = Personnel.all
+    @personnels = Personnel.order(:name).page(params[:page])
   end
 
   # GET /personnels/1

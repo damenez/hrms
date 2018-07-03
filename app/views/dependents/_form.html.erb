@@ -1,32 +1,16 @@
-<%= form_with(model: dependent, local: true) do |form| %>
-  <% if dependent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(dependent.errors.count, "error") %> prohibited this dependent from being saved:</h2>
-
-      <ul>
-      <% dependent.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for [@personnel, dependent] do |f| %>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :dependent_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :relationship %>
-    <%= form.text_field :relationship, id: :dependent_relationship %>
+    <%= f.label :relationship, "Relationship" %>
+    <%= f.text_area :relationship %>
   </div>
 
-  <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age, id: :dependent_age %>
-  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
